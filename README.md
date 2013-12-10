@@ -18,7 +18,7 @@ group.start('test');
 
 * `regroup(defaults)` Instantiate a new respawn group. All `opts` will inherit from `defaults`
 
-* `group.add(id, command, opts)` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information
+* `group.add(id, command, opts)` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information. Note that if you call `add` multiple times with the same `id` old monitors will be removed when they stop.
 
 * `group.remove(id, cb)` Remove a monitor
 
@@ -32,7 +32,7 @@ group.start('test');
 
 * `group.on('add', mon)` New monitor has been added. `mon.id` contains the id of the monitor
 
-* `group.on('remove', mon)` Monitor has been removed. Note that if you call `add` multiple times with the same id old monitors will be removed automatically.
+* `group.on('remove', mon)` Monitor has been removed.
 
 * `group.on('start', mon)` Monitor has started
 
