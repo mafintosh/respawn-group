@@ -1,0 +1,11 @@
+{
+  "name": "respawn-group",
+  "version": "0.1.0",
+  "description": "Manage a group of respawn monitors",
+  "repository": "git://github.com/mafintosh/respawn-group.git",
+  "author": "Mathias Buus <mathiasbuus@gmail.com>",
+  "dependencies": {
+    "xtend": "~2.1.1",
+    "respawn": "~0.1.3"
+  }
+}
