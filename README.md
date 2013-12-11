@@ -18,7 +18,7 @@ group.start('test');
 
 * `regroup(defaults)` Instantiate a new respawn group. All `opts` will inherit from `defaults`
 
-* `group.add(id, command, opts)` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information. Note that if you call `add` multiple times with the same `id` old monitors will be removed when they stop.
+* `group.add(id, command, opts)` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information. If you add a new monitor with the same id as an old one it will be used when the old monitor stops.
 
 * `group.remove(id, cb)` Remove a monitor
 
@@ -28,13 +28,13 @@ group.start('test');
 
 * `group.restart(id)` Gracefully restart a monitor
 
+* `group.get(id)` Get a monitor
+
+* `group.list()` List all monitors
+
 ## Events
 
-* `group.on('add', mon)` New monitor has been added. `mon.id` contains the id of the monitor
-
-* `group.on('remove', mon)` Monitor has been removed.
-
-* `group.on('start', mon)` Monitor has started
+* `group.on('start', mon)` Monitor has started. `mon.id` contains the id of the monitor
 
 * `group.on('stop', mon)` Monitor is fully stopped
 
@@ -49,6 +49,23 @@ group.start('test');
 * `group.on('stderr', mon, data)` child process stderr has emitted data
 
 * `group.on('warn', mon, err)` Monitor has a warning
+
+* `group.on('finalize', mon)` A monitor is fully stopped and being garbage collected. Happens if you call remove or updates a monitor
+
+## Updating existing monitors
+
+To update an existing monitor simply add it again with the same id
+
+``` js
+group.add('test', ['node', 'server.js']);
+
+// ... wait a bit ...
+// now lets update test
+
+group.add('test', ['node', 'server2.js']);
+group.restart('test'); // you need to restart test for the new monitor to take over
+                       // this will trigger a 'finalize' event for the old monitor
+```
 
 ## License
 
