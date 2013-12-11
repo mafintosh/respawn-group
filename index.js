@@ -51,6 +51,10 @@ var regroup = function(defaults) {
 		return running[id] || monitors[id];
 	};
 
+	group.has = function(id) {
+		return !!group.get(id);
+	};
+
 	group.add = function(id, command, opts) {
 		if (!Array.isArray(command)) return group.add(command.command, command);
 		opts = xtend(defaults, opts);
