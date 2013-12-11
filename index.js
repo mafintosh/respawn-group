@@ -34,13 +34,13 @@ var regroup = function(defaults) {
 				delete running[mon.id];
 				group.emit('stop', mon);
 			}
-			remove(mon);
+			finalize(mon);
 		});
 	};
 
-	var remove = function(mon) {
+	var finalize = function(mon) {
 		if (!mon || mon.status !== 'stopped' || monitors[mon.id] === mon || running[mon.id] === mon) return;
-		group.emit('remove', mon);
+		group.emit('finalize', mon);
 	};
 
 	group.list = function() {
@@ -61,9 +61,9 @@ var regroup = function(defaults) {
 		mon.id = id;
 		monitors[id] = mon;
 		bootstrap(mon);
+		finalize(old);
 
-		group.emit('add', mon);
-		remove(old);
+		return mon;
 	};
 
 	group.remove = function(id, cb) {
@@ -83,7 +83,7 @@ var regroup = function(defaults) {
 		if (status === 'running') return mon;
 
 		running[id] = mon;
-		remove(old);
+		finalize(old);
 
 		mon.start();
 		if (status === 'stopped') group.emit('start', mon);
