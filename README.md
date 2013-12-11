@@ -16,21 +16,23 @@ group.start('test');
 
 ## API
 
-* `regroup(defaults)` Instantiate a new respawn group. All `opts` will inherit from `defaults`
+* `regroup(defaults) -> group` Instantiate a new respawn group. All `opts` will inherit from `defaults`
 
-* `group.add(id, command, opts)` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information. If you add a new monitor with the same id as an old one it will be used when the old monitor stops.
+* `group.add(id, command, opts) -> mon` Add a new respawn monitor. See [respawn](https://github.com/mafintosh/respawn) for more information. If you add a new monitor with the same id as an old one it will be used when the old monitor stops.
 
 * `group.remove(id, cb)` Remove a monitor
 
-* `group.start(id)` Start a monitor
+* `group.start(id) -> mon` Start a monitor
 
 * `group.stop(id, cb)` Stop a monitor
 
-* `group.restart(id)` Gracefully restart a monitor
+* `group.restart(id) -> mon` Gracefully restart a monitor
 
-* `group.get(id)` Get a monitor
+* `group.get(id) -> mon` Get a monitor
 
-* `group.list()` List all monitors
+* `group.has(id) -> bool` True is group has monitor
+
+* `group.list() -> array` List all monitors
 
 ## Events
 
