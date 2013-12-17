@@ -8,7 +8,7 @@
     "xtend": "~2.1.1",
     "respawn": "~0.1.3"
   },
-  keywords: [
+  "keywords": [
     "spawn",
 	"group",
 	"list",
