@@ -2,7 +2,7 @@ var respawn = require('respawn');
 var xtend = require('xtend');
 var events = require('events');
 
-var regroup = function(defaults) {
+var respawns = function(defaults) {
 	var group = new events.EventEmitter();
 
 	var monitors = {};
@@ -110,3 +110,5 @@ var regroup = function(defaults) {
 
 	return group;
 };
+
+module.exports = respawns;
