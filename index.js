@@ -7,6 +7,7 @@ var respawns = function(defaults) {
 
 	var monitors = {};
 	var running = {};
+	var shutdown = false;
 
 	var bootstrap = function(mon) {
 		mon.on('stdout', function(data) {
@@ -80,7 +81,7 @@ var respawns = function(defaults) {
 
 	group.start = function(id) {
 		var mon = monitors[id];
-		if (!mon) return null;
+		if (!mon || shutdown) return null;
 
 		var old = running[id];
 		var status = old ? old.status : 'stopped';
@@ -106,6 +107,19 @@ var respawns = function(defaults) {
 		var mon = group.start(id);
 		if (mon) group.emit('restart', mon);
 		return mon;
+	};
+
+	group.shutdown = function(cb) {
+		shutdown = true;
+
+		var list = Object.keys(monitors);
+		var loop = function() {
+			var next = list.shift();
+			if (!next) return cb && cb();
+			group.stop(next, loop);
+		};
+
+		loop();
 	};
 
 	return group;
