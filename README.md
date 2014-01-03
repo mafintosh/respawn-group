@@ -34,6 +34,8 @@ group.start('test');
 
 * `group.list() -> array` List all monitors
 
+* `group.shutdown(cb)` Stop all services and ignore all following starts
+
 ## Events
 
 * `group.on('start', mon)` Monitor has started. `mon.id` contains the id of the monitor
