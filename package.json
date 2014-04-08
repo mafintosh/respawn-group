@@ -1,6 +1,6 @@
 {
   "name": "respawn-group",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Manage a group of respawn monitors",
   "repository": "git://github.com/mafintosh/respawn-group.git",
   "author": "Mathias Buus <mathiasbuus@gmail.com>",
@@ -10,15 +10,15 @@
   },
   "keywords": [
     "spawn",
-	"group",
-	"list",
-	"restart",
-	"keep",
-	"alive",
-	"process",
-	"monitor",
-	"service",
-	"start",
-	"stop"
+    "group",
+    "list",
+    "restart",
+    "keep",
+    "alive",
+    "process",
+    "monitor",
+    "service",
+    "start",
+    "stop"
   ]
 }
