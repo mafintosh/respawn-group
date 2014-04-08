@@ -22,6 +22,10 @@ var respawns = function(defaults) {
 			group.emit('spawn', mon, child);
 		});
 
+		mon.on('sleep', function() {
+			group.emit('sleep', mon);
+		});
+
 		mon.on('exit', function(code, signal) {
 			group.emit('exit', mon, code, signal);
 		});

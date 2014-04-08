@@ -44,6 +44,8 @@ group.start('test');
 
 * `group.on('restart', mon)` Monitor is being restarted
 
+* `group.on('sleep', mon)` Monitor is sleeping
+
 * `group.on('spawn', mon, process)` Monitor has spawned a child process
 
 * `group.on('exit', mon, code, signal)` Monitors child process has exited
