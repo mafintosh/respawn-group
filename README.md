@@ -42,6 +42,8 @@ group.start('test');
 
 * `group.on('stop', mon)` Monitor is fully stopped
 
+* `group.on('crash', mon)` Monitor has crashed
+
 * `group.on('restart', mon)` Monitor is being restarted
 
 * `group.on('sleep', mon)` Monitor is sleeping
