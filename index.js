@@ -2,6 +2,10 @@ var respawn = require('respawn');
 var xtend = require('xtend');
 var events = require('events');
 
+var stopped = function(status) {
+	return status === 'stopped' || status === 'crashed';
+};
+
 var respawns = function(defaults) {
 	var group = new events.EventEmitter();
 
@@ -34,6 +38,10 @@ var respawns = function(defaults) {
 			group.emit('warn', mon, err);
 		});
 
+		mon.on('crash', function() {
+			group.emit('crash', mon);
+		});
+
 		mon.on('stop', function() {
 			if (running[mon.id] === mon) {
 				delete running[mon.id];
@@ -44,7 +52,7 @@ var respawns = function(defaults) {
 	};
 
 	var finalize = function(mon) {
-		if (!mon || mon.status !== 'stopped' || monitors[mon.id] === mon || running[mon.id] === mon) return;
+		if (!mon || !stopped(mon.status) || monitors[mon.id] === mon || running[mon.id] === mon) return;
 		group.emit('finalize', mon);
 	};
 
@@ -95,7 +103,7 @@ var respawns = function(defaults) {
 		finalize(old);
 
 		mon.start();
-		if (status === 'stopped') group.emit('start', mon);
+		if (stopped(status)) group.emit('start', mon);
 
 		return mon;
 	};
