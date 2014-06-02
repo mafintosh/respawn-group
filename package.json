@@ -5,8 +5,9 @@
   "repository": "git://github.com/mafintosh/respawn-group.git",
   "author": "Mathias Buus <mathiasbuus@gmail.com>",
   "dependencies": {
-    "xtend": "~2.1.1",
-    "respawn": "~0.4.2"
+    "after-all": "^1.0.0",
+    "respawn": "~0.4.2",
+    "xtend": "~2.1.1"
   },
   "keywords": [
     "spawn",

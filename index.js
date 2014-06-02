@@ -1,5 +1,6 @@
 var respawn = require('respawn');
 var xtend = require('xtend');
+var afterAll = require('after-all');
 var events = require('events');
 
 var stopped = function(status) {
@@ -124,14 +125,11 @@ var respawns = function(defaults) {
 	group.shutdown = function(cb) {
 		shutdown = true;
 
-		var list = Object.keys(monitors);
-		var loop = function() {
-			var next = list.shift();
-			if (!next) return cb && cb();
-			group.stop(next, loop);
-		};
+		var next = afterAll(cb);
 
-		loop();
+		Object.keys(monitors).forEach(function(name) {
+			group.stop(name, next());
+		});
 	};
 
 	return group;
