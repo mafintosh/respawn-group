@@ -98,7 +98,7 @@ var respawns = function(defaults) {
 
 		var old = running[id];
 		var status = old ? old.status : 'stopped';
-		if (status === 'running') return mon;
+		if (status === 'running' || status === 'sleeping') return mon;
 
 		running[id] = mon;
 		finalize(old);
