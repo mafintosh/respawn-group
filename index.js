@@ -70,7 +70,7 @@ var respawns = function(defaults) {
 	};
 
 	group.add = function(id, command, opts) {
-		if (!Array.isArray(command)) return group.add(id, command.command, command);
+		if (typeof(command) != 'function' && !Array.isArray(command)) return group.add(id, command.command, command);
 		opts = xtend(defaults, opts);
 
 		var mon = respawn(command, opts);
