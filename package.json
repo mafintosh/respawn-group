@@ -1,6 +1,6 @@
 {
   "name": "respawn-group",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Manage a group of respawn monitors",
   "repository": "git://github.com/mafintosh/respawn-group.git",
   "author": "Mathias Buus <mathiasbuus@gmail.com>",
